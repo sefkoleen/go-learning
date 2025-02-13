@@ -32,14 +32,14 @@ func slicesAndMaps() {
 	fmt.Println(testSlice)
 
 	// testMap := make(map[string]int)
-	testMap := map[string]int {
-		"Monday": 1,
-		"Tuesday": 2,
+	testMap := map[string]int{
+		"Monday":    1,
+		"Tuesday":   2,
 		"Wednesday": 3,
-		"Thursday": 4,
-		"Friday": 5,
-		"Saturday": 6,
-		"Sunday": 7,
+		"Thursday":  4,
+		"Friday":    5,
+		"Saturday":  6,
+		"Sunday":    7,
 	}
 	value := testMap["Wednesday"]
 	fmt.Println(value)
