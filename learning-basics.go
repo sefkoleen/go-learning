@@ -48,10 +48,60 @@ func slicesAndMaps() {
 	fmt.Println(testMap)
 }
 
+// FUNCTIONS BASICS
+func greet(name string) string {
+	// My first solution
+	// fmt.Println("Hi", name)
+	return fmt.Sprintf("Hi %s", name) // // Using Sprintf to return a string instead of printing directly
+}
+
+func calculateArea(width, height float64) (area, perimeter float64) {
+	area = width * height
+	perimeter = 2 * (width + height)
+	return
+}
+
+func findMax(nums ...int) (int, error) {
+	// For error handling, "error" has to be defined in function declaration
+	if len(nums) == 0 {
+		return 0, fmt.Errorf("no numbers provided")
+	}
+	largestNum := nums[0]
+	for _, num := range nums {
+		if num > largestNum {
+			largestNum = num
+		}
+	}
+	return largestNum, nil
+}
+
+func getPersonData(name string, age int, height float64) string {
+	return fmt.Sprintf("Hi my name is %q\n, I am %d\n years old and my height is %.2f\n cm", name, age, height)
+}
+
 func main() {
 	welcomeMessage := "Hello World"
 	fmt.Println(welcomeMessage)
 	// personalData()
 	// loopsAndIfs()
-	slicesAndMaps()
+	// slicesAndMaps()
+
+	// GO best practice:
+	// 1. Do only operations in the functions and return values
+	// 2. The logging and printing happens in the main() func
+
+	greeting := greet("Robert")
+	fmt.Println(greeting)
+
+	area, perimeter := calculateArea(10, 11)
+	fmt.Printf("Area: %.2f, Perimeter: %.2f\n", area, perimeter)
+	maxNum, err := findMax(1, 500, 100)
+	if err != nil {
+		fmt.Println("Error: ", err)
+	} else {
+		fmt.Printf("Largest number: %d\n", maxNum)
+	}
+
+	person := getPersonData("Robert", 31, 177)
+	fmt.Println(person)
 }
