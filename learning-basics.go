@@ -79,6 +79,19 @@ func getPersonData(name string, age int, height float64) string {
 	return fmt.Sprintf("Hi my name is %q\n, I am %d\n years old and my height is %.2f\n cm", name, age, height)
 }
 
+func getSliceData(nums ...int) (int, int, error) {
+	if len(nums) < 0 {
+		return 0, 0, fmt.Errorf("Cannot get Slice Data, slice is Empty")
+	}
+
+	sliceLength := len(nums)
+	sliceSum := 0
+	for _, num := range nums {
+		sliceSum += num
+	}
+	return sliceLength, sliceSum, nil
+}
+
 func main() {
 	welcomeMessage := "Hello World"
 	fmt.Println(welcomeMessage)
@@ -104,4 +117,12 @@ func main() {
 
 	person := getPersonData("Robert", 31, 177)
 	fmt.Println(person)
+
+	length, sum, err := getSliceData(50, 13, 88)
+	if err != nil {
+		fmt.Println("Error: ", err)
+	} else {
+		fmt.Printf("The slice is %d characters long, and this is the sum of the slice: %d\n", length, sum)
+	}
+
 }
