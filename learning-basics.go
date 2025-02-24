@@ -92,6 +92,19 @@ func getSliceData(nums ...int) (int, int, error) {
 	return sliceLength, sliceSum, nil
 }
 
+func orderConfirmation(productName string, productPrice float64, isSuccess bool) (string, float64, bool, error) {
+	if productName != "" {
+		return "", 0, false, fmt.Errorf("Cannot process empty name")
+	} else if productPrice == 0 {
+		return "", 0, false, fmt.Errorf("Cannot process free product")
+	}
+
+	productNameString := fmt.Sprintf("The product you ordered is %s", productName)
+	priceAfterTax := productPrice + (productPrice * 0.17)
+
+	return productNameString, priceAfterTax, isSuccess, nil
+}
+
 func main() {
 	welcomeMessage := "Hello World"
 	fmt.Println(welcomeMessage)
@@ -102,7 +115,6 @@ func main() {
 	// GO best practice:
 	// 1. Do only operations in the functions and return values
 	// 2. The logging and printing happens in the main() func
-
 	greeting := greet("Robert")
 	fmt.Println(greeting)
 
@@ -115,14 +127,20 @@ func main() {
 		fmt.Printf("Largest number: %d\n", maxNum)
 	}
 
+	// GO Practice
+	// getPersonData
 	person := getPersonData("Robert", 31, 177)
 	fmt.Println(person)
 
+	// getSliceData
 	length, sum, err := getSliceData(50, 13, 88)
 	if err != nil {
 		fmt.Println("Error: ", err)
 	} else {
 		fmt.Printf("The slice is %d characters long, and this is the sum of the slice: %d\n", length, sum)
 	}
+
+	// returnThreeValues
+	productName, productPrice, isSuccess := orderConfirmation("Robert", 31, true)
 
 }
