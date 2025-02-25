@@ -34,3 +34,13 @@ func (account *BankAccount) Withdraw(amount float64) error {
 func (account BankAccount) Info() string {
 	return fmt.Sprintf("Bank Account Info\n Owner: %s\n Current Balance: %f\n Accout Number: %s\n", account.Owner, account.Balance, account.AccountNumber)
 }
+
+func (b *Bank) AddBankAccount(owner string, balance float64, accountNumber string) (*Bank, *BankAccount) {
+	newBankAccount := &BankAccount{
+		Owner:         owner,
+		Balance:       balance,
+		AccountNumber: accountNumber,
+	}
+	b.Accounts = append(b.Accounts, newBankAccount)
+	return b, newBankAccount
+}

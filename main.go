@@ -44,4 +44,6 @@ func main() {
 		account.Withdraw(100)
 		balanceAfterWithdraw := account.Info()
 		fmt.Println("Current balance after deposit\n", balanceAfterWithdraw)
+
+		
 }
