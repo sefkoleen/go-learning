@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 // GO best practice:
 // 1. Do only operations in the functions and return values
@@ -33,17 +36,28 @@ func main() {
 		} */
 
 	// Structs and Methods - Bank Account simulation
-		account := &BankAccount{
-			Owner:         "Ali",
-			Balance:       1000,
-			AccountNumber: "ACC001",
-		}
-		account.Deposit(250)
-		balanceAfterDeposit := account.Info()
-		fmt.Println("Current balance after deposit", balanceAfterDeposit)
-		account.Withdraw(100)
-		balanceAfterWithdraw := account.Info()
-		fmt.Println("Current balance after deposit\n", balanceAfterWithdraw)
+	account := &BankAccount{
+		Owner:         "Ali",
+		Balance:       1000,
+		AccountNumber: rand.Int(),
+	}
+	account.Deposit(250)
+	balanceAfterDeposit := account.Info()
+	fmt.Println("Current balance after deposit", balanceAfterDeposit)
+	account.Withdraw(100)
+	balanceAfterWithdraw := account.Info()
+	fmt.Println("Current balance after deposit\n", balanceAfterWithdraw)
 
-		
+	// New Bank Account Simulation
+	newBank, err := CreateNewBank()
+	if err != nil {
+		fmt.Printf("Error while creating bank", err)
+	} else {
+		fmt.Println("New Bank created:", newBank.Accounts)
+	}
+	_, newBankAccount := newBank.AddBankAccount("Robert", 2000)
+	fmt.Printf("New Account created!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", newBankAccount.Owner, newBankAccount.Balance, newBankAccount.AccountNumber)
+	_, newBankAccount2 := newBank.AddBankAccount("Ali", 500)
+	fmt.Printf("New Account created!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", newBankAccount2.Owner, newBankAccount2.Balance, newBankAccount2.AccountNumber)
+
 }
