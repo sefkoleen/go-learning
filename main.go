@@ -51,13 +51,16 @@ func main() {
 	// New Bank Account Simulation
 	newBank, err := CreateNewBank()
 	if err != nil {
-		fmt.Printf("Error while creating bank", err)
+		fmt.Errorf("Error while creating bank", err)
 	} else {
 		fmt.Println("New Bank created:", newBank.Accounts)
 	}
 	_, newBankAccount := newBank.AddBankAccount("Robert", 2000)
-	fmt.Printf("New Account created!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", newBankAccount.Owner, newBankAccount.Balance, newBankAccount.AccountNumber)
+	fmt.Printf("New Bank Account created!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", newBankAccount.Owner, newBankAccount.Balance, newBankAccount.AccountNumber)
 	_, newBankAccount2 := newBank.AddBankAccount("Ali", 500)
-	fmt.Printf("New Account created!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", newBankAccount2.Owner, newBankAccount2.Balance, newBankAccount2.AccountNumber)
+	fmt.Printf("New Bank Account created!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", newBankAccount2.Owner, newBankAccount2.Balance, newBankAccount2.AccountNumber)
+
+	foundAccount := newBank.FindBankAccount(newBankAccount2.AccountNumber)
+	fmt.Printf("Bank Account found!\n Owner: %s\n Balance: %f\n AccountNumber: %d\n", foundAccount.Owner, foundAccount.Balance, foundAccount.AccountNumber)
 
 }
